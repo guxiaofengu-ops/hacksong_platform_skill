@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "hacksong-local": {
+      "command": "node",
+      "args": [
+        "./mcp/server.js"
+      ]
+    }
+  }
+}

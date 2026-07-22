@@ -1,0 +1,27 @@
+{
+  "name": "hacksong-codex",
+  "version": "1.0.0",
+  "description": "Hacksong Linux competition entry for Codex",
+  "author": {
+    "name": "Hacksong Platform"
+  },
+  "homepage": "https://github.com/guxiaofengu-ops/hacksong_platform_skill",
+  "repository": "https://github.com/guxiaofengu-ops/hacksong_platform_skill",
+  "keywords": ["hacksong", "codex", "competition", "linux"],
+  "interface": {
+    "displayName": "Hacksong",
+    "shortDescription": "Use the Hacksong competition client from Codex.",
+    "longDescription": "Register, log in, inspect teams, and sync Codex competition turns through the local codex-hacksong client.",
+    "developerName": "Hacksong Platform",
+    "category": "Productivity",
+    "capabilities": ["CLI", "MCP", "Competition Sync"],
+    "defaultPrompt": [
+      "Check my Hacksong login status.",
+      "Run Hacksong doctor.",
+      "Sync this Codex session to Hacksong."
+    ],
+    "brandColor": "#2563EB"
+  },
+  "skills": "./skills",
+  "mcpServers": "./.mcp.json"
+}
