@@ -13,8 +13,8 @@ curl -fsSL "$HACKSONG_SERVER/hacksong/install.sh" | bash
 
 The installer places this plugin under `~/.agents/plugins/hacksong-codex`, writes the personal marketplace entry, and installs both commands:
 
-- `codex-hacksong`: account, team, sync, and diagnostics CLI.
-- `hacksong-codex`: competition launcher that starts Codex only after Hacksong login is valid.
+- `codex-hacksong`: account, team, sync retry, and diagnostics CLI.
+- `hacksong-codex`: competition launcher that starts Codex only after Hacksong login is valid and reports each completed Codex turn when `task_complete` appears.
 
 If the installer uses `~/.local/bin`, add it to `PATH`:
 
@@ -63,6 +63,8 @@ hacksong-codex exec "Use Hacksong to run doctor. Do not print tokens."
 ```
 
 If Hacksong is not logged in, `hacksong-codex` refuses to start Codex and prints the required login/register commands.
+
+While Codex is running, `hacksong-codex` starts a local watcher. Each completed question is uploaded immediately after Codex writes `task_complete` to `~/.codex/sessions`. Manual `codex-hacksong sync` is still available for retry or diagnostics.
 
 ## Update
 

@@ -34,7 +34,7 @@ const tools = [
   },
   {
     name: 'hacksong_sync',
-    description: 'Upload one manual Codex test turn and file event to Hacksong.',
+    description: 'Upload the latest completed Codex turn to Hacksong for diagnostics or retry.',
     inputSchema: {
       type: 'object',
       properties: {

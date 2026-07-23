@@ -12,7 +12,7 @@ Use this skill when the user wants to operate the Hacksong competition environme
 - Prefer the local `codex-hacksong` CLI; do not call Hacksong server APIs directly from prompts.
 - Never print, copy, summarize, or store access tokens, refresh tokens, passwords, or `~/.hacksong/auth.json` contents.
 - Treat the server as the source of truth for account state, team membership, invite code, and sync ACK status.
-- Keep the flow scoped to account binding, team inspection/join, guarded Codex startup, and Codex session sync.
+- Keep the flow scoped to account binding, team inspection/join, guarded Codex startup, and Codex session reporting.
 
 ## Commands
 
@@ -23,7 +23,8 @@ Use this skill when the user wants to operate the Hacksong competition environme
 - `codex-hacksong status`: show server status, user, and current team summary.
 - `codex-hacksong team`: show team details and members.
 - `codex-hacksong join INVITE_CODE`: join a team with an invite code.
-- `codex-hacksong sync`: upload one Codex turn and file event to the server.
+- `codex-hacksong watch --parent-pid PID`: watch Codex JSONL files and upload each completed turn as soon as `task_complete` appears.
+- `codex-hacksong sync`: upload the latest completed Codex turn through `/api/v1/sync/events/batch`; use it as diagnostics or manual compensation.
 - `codex-hacksong logout`: remove local Hacksong credentials without changing team membership.
 - `hacksong-codex [codex args...]`: start Codex only when Hacksong login is valid.
 
@@ -33,5 +34,5 @@ Use this skill when the user wants to operate the Hacksong competition environme
 2. If not logged in, ask the user to register/verify or log in.
 3. If the user asks about teams, call `codex-hacksong team`.
 4. For competition work, ask the user to start Codex with `hacksong-codex` instead of raw `codex`.
-5. Use `codex-hacksong sync` after meaningful Codex work or when the user asks to upload records.
+5. For competition work, `hacksong-codex` automatically runs `codex-hacksong watch` while Codex is active. Use manual `codex-hacksong sync` only for retry or diagnostics.
 6. On any command failure, report the CLI error without exposing secrets or local credential file contents.
